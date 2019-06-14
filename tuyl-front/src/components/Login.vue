@@ -44,6 +44,7 @@ export default {
       }
 
       localStorage.token = req.headers.authorization
+      localStorage.signedIn = true
       this.error = false
 
       this.$router.replace(this.$route.query.redirect || '/')
