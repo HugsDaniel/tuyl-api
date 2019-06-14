@@ -9,6 +9,30 @@ class Api::V1::UserActivitiesController < ApplicationController
     end
   end
 
+  def done
+    @user_activity = UserActivity.find(params[:id])
+
+    @user_activity.status = "done"
+    @user_activity.save
+
+    deconstructed_user_activities = current_user.user_activities.includes(:activity)
+
+    @user_activities = []
+    deconstructed_user_activities.each do |ua|
+      hash = {
+        id: ua.id,
+        begin_time: ua.begin_time,
+        end_time:   ua.end_time,
+        activity_name: ua.activity.name,
+        activity_description: ua.activity.description,
+        status: ua.status
+      }
+      @user_activities << hash
+    end
+
+    render json: @user_activities
+  end
+
   private
 
   def user_activity_params

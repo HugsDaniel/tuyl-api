@@ -6,10 +6,12 @@ class Api::V1::UsersController < ApplicationController
     @user_activities = []
     deconstructed_user_activities.each do |ua|
       hash = {
+        id: ua.id,
         begin_time: ua.begin_time,
         end_time:   ua.end_time,
         activity_name: ua.activity.name,
-        activity_description: ua.activity.description
+        activity_description: ua.activity.description,
+        status: ua.status
       }
       @user_activities << hash
     end
