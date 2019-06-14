@@ -1,6 +1,6 @@
 class Api::V1::ActivitiesController < ApplicationController
   def index
-    @activities = Activity.all
+    @activities = Activity.all.order('created_at DESC')
 
     render json: @activities
   end
