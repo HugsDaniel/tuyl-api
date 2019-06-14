@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_13_235059) do
+ActiveRecord::Schema.define(version: 2019_06_14_151036) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,6 +36,19 @@ ActiveRecord::Schema.define(version: 2019_06_13_235059) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "user_activities", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "activity_id"
+    t.datetime "begin_time"
+    t.datetime "end_time"
+    t.string "status", default: "pending"
+    t.integer "satisfaction_level"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["activity_id"], name: "index_user_activities_on_activity_id"
+    t.index ["user_id"], name: "index_user_activities_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -48,4 +61,6 @@ ActiveRecord::Schema.define(version: 2019_06_13_235059) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "user_activities", "activities"
+  add_foreign_key "user_activities", "users"
 end
