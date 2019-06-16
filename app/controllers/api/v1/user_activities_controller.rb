@@ -15,27 +15,19 @@ class Api::V1::UserActivitiesController < ApplicationController
     @user_activity.status = "done"
     @user_activity.save
 
-    deconstructed_user_activities = current_user.user_activities.includes(:activity)
-
-    @user_activities = []
-    deconstructed_user_activities.each do |ua|
-      hash = {
-        id: ua.id,
-        begin_time: ua.begin_time,
-        end_time:   ua.end_time,
-        activity_name: ua.activity.name,
-        activity_description: ua.activity.description,
-        status: ua.status
-      }
-      @user_activities << hash
-    end
-
-    render json: @user_activities
+    render json: jsonified_user_activities
   end
 
   private
 
   def user_activity_params
     params.require(:user_activity).permit(:activity_id, :satisfaction_level, :begin_time, :end_time)
+  end
+
+  def jsonified_user_activities
+   current_user.
+    user_activities.
+    order('updated_at DESC').
+    as_json(include: :activity)
   end
 end
