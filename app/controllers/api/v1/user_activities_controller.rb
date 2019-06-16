@@ -9,25 +9,24 @@ class Api::V1::UserActivitiesController < ApplicationController
     end
   end
 
+  def show
+    @user_activity = UserActivity.find(params[:id])
+
+    render json: @user_activity
+  end
+
   def done
     @user_activity = UserActivity.find(params[:id])
 
+    @user_activity.assign_attributes(user_activity_params)
     @user_activity.status = "done"
-    @user_activity.save
 
-    render json: jsonified_user_activities
+    @user_activity.save
   end
 
   private
 
   def user_activity_params
     params.require(:user_activity).permit(:activity_id, :satisfaction_level, :begin_time, :end_time)
-  end
-
-  def jsonified_user_activities
-   current_user.
-    user_activities.
-    order('updated_at DESC').
-    as_json(include: :activity)
   end
 end

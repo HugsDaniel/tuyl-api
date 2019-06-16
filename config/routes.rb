@@ -16,7 +16,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :activities,      only: [:index, :create]
       resources :skills,          only: :index
-      resources :user_activities, only: :create do
+      resources :user_activities, only: [:create, :show] do
         member do
           put :done
         end
