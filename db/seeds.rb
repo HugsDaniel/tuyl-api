@@ -6,8 +6,8 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 puts "Cleaning database...."
-# UserActivity.destroy_all
-# UserSkill.destroy_all
+UserActivity.destroy_all
+UserSkill.destroy_all
 # ActivitySkill.destroy_all
 Skill.destroy_all
 Activity.destroy_all
@@ -16,6 +16,11 @@ User.destroy_all
 puts "Creating users...."
 coko = User.create!(
   email: "coko@example.com",
+  password: "password"
+)
+
+hugo = User.create!(
+  email: "hugo@example.com",
   password: "password"
 )
 # url = "https://media.licdn.com/dms/image/C4D03AQGM56o3VpiTrA/profile-displayphoto-shrink_800_800/0?e=1565827200&v=beta&t=PpsnAhC2-SCImmPxlDG84Sp8262Fzm-rEMpzpVzKZYU"
@@ -129,37 +134,37 @@ Skill.create!(
 # puts "Creating user skills...."
 
 # UserSkill.create!(
-#   user: User.first,
+#   user: hugo,
 #   skill: Skill.find_by(name: "Constitution"),
 #   amount: 30
 # )
 
 # UserSkill.create!(
-#   user: User.first,
+#   user: hugo,
 #   skill: Skill.find_by(name: "Sagesse"),
 #   amount: 20
 # )
 
 # UserSkill.create!(
-#   user: User.first,
+#   user: hugo,
 #   skill: Skill.find_by(name: "Force"),
 #   amount: 15
 # )
 
 # UserSkill.create!(
-#   user: User.first,
+#   user: hugo,
 #   skill: Skill.find_by(name: "Intelligence"),
 #   amount: 15
 # )
 
 # UserSkill.create!(
-#   user: User.first,
+#   user: hugo,
 #   skill: Skill.find_by(name: "Dextérité"),
 #   amount: 10
 # )
 
 # UserSkill.create!(
-#   user: User.first,
+#   user: hugo,
 #   skill: Skill.find_by(name: "Charisme"),
 #   amount: 10
 # )

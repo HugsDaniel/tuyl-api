@@ -8,4 +8,15 @@ class User < ApplicationRecord
 
   has_many :user_activities
   has_many :activities, through: :user_activities
+
+  has_many :user_skills
+  has_many :skills, through: :user_skills
+
+  after_create :create_user_skills
+
+  private
+
+  def create_user_skills
+    Skill.all.map { |skill| self.user_skills.create(skill: skill) }
+  end
 end
