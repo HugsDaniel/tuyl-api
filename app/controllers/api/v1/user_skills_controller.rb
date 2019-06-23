@@ -9,8 +9,10 @@ class Api::V1::UserSkillsController < ApplicationController
     @user_skills = current_user.user_skills
 
     user_skills_params.each do |params|
-      @user_skills.map { |skill| update_attributes(skill, params) }
+      @user_skills.map { |user_skill| update_attributes(user_skill, params) }
     end
+
+    render json: @user_skills
   end
 
   private
@@ -20,6 +22,6 @@ class Api::V1::UserSkillsController < ApplicationController
   end
 
   def update_attributes(user_skill, params)
-    user_skill.update_attributes(amount: params[:amount]) if user_skill.id == params[:id]
+    user_skill.update_attributes(amount: params[:amount].to_i) if user_skill.id == params[:id].to_i
   end
 end
