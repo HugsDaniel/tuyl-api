@@ -4,7 +4,6 @@ class Api::V1::UsersController < ApplicationController
     user_activities = @user.user_activities.order('updated_at DESC').includes(:activity)
     user_skills = @user.user_skills
 
-    # @json_user_activites = user_activities.as_json(include: :activity)
     @json_user_activities = user_activities.map do |ua|
       {
         id:       ua.id,

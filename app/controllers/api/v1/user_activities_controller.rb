@@ -21,7 +21,9 @@ class Api::V1::UserActivitiesController < ApplicationController
     @user_activity.assign_attributes(user_activity_params)
     @user_activity.status = "done"
 
-    @user_activity.save
+    if @user_activity.save
+      render json: @user_activity
+    end
   end
 
   private
