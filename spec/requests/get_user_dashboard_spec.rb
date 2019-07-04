@@ -1,20 +1,22 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-describe "get user dashboard route", :type => :request do
-  let!(:skills) {FactoryBot.create_list(:skill, 6)}
+describe 'get user dashboard route', type: :request do
+  let!(:skills) { FactoryBot.create_list(:skill, 6) }
   let!(:user) { FactoryBot.create(:user) }
   let!(:activity) { FactoryBot.create(:activity) }
   let!(:user_activity) { UserActivity.create(user: user, activity: activity, begin_time: DateTime.now, end_time: DateTime.now + 2.hours) }
 
-  it "requires login" do
-    get "/api/v1/dashboard"
+  it 'requires login' do
+    get '/api/v1/dashboard'
 
     expect(response).to have_http_status(:unauthorized)
   end
 
   before do
     sign_in user
-    get "/api/v1/dashboard"
+    get '/api/v1/dashboard'
   end
 
   it 'returns all user activities' do

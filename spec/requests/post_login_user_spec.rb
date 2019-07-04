@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-describe "login a user route", :type => :request do
+describe 'login a user route', type: :request do
   let!(:user) { FactoryBot.create(:user, email: 'test@example.com') }
 
   it 'requires the user to exist' do
@@ -17,7 +19,7 @@ describe "login a user route", :type => :request do
   end
 
   it 'returns an auth token' do
-    expect((response.headers)['Authorization']).not_to eq(nil)
+    expect(response.headers['Authorization']).not_to eq(nil)
   end
 
   it 'returns a ok status' do

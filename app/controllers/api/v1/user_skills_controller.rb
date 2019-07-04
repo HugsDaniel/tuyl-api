@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 class Api::V1::UserSkillsController < ApplicationController
   def index
     @user_skills = current_user.user_skills
 
-    render json: @user_skills.as_json(include: { skill: { only: :name} })
+    render json: @user_skills.as_json(include: { skill: { only: :name } })
   end
 
   def update_multiple
@@ -18,7 +20,7 @@ class Api::V1::UserSkillsController < ApplicationController
   private
 
   def user_skills_params
-    params.require(:user_skills).map { |user_skill| user_skill.permit! }
+    params.require(:user_skills).map(&:permit!)
   end
 
   def update_attributes(user_skill, params)

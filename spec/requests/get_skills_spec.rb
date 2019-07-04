@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-describe "get all skills route", :type => :request do
+describe 'get all skills route', type: :request do
   let!(:user) { FactoryBot.create(:user) }
-  let!(:skills) {FactoryBot.create_list(:skill, 20)}
+  let!(:skills) { FactoryBot.create_list(:skill, 20) }
 
-  it "requires login" do
+  it 'requires login' do
     get '/api/v1/skills'
 
     expect(response).to have_http_status(:unauthorized)

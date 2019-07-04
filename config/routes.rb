@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
   devise_for :users,
              path: '',
@@ -14,14 +16,14 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      resources :activities,      only: [:index, :create]
+      resources :activities,      only: %i[index create]
       resources :skills,          only: :index
       resources :user_skills,     only: :index do
         collection do
           put :update_multiple
         end
       end
-      resources :user_activities, only: [:create, :show] do
+      resources :user_activities, only: %i[create show] do
         member do
           put :done
         end

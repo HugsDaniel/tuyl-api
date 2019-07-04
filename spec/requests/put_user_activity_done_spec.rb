@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-describe "PUT /api/v1/user_activities/:id/done" do
+describe 'PUT /api/v1/user_activities/:id/done' do
   let!(:user) { FactoryBot.create(:user) }
   let!(:activity) { FactoryBot.create(:activity) }
 

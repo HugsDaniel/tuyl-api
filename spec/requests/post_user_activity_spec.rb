@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-describe "post a user activity route", :type => :request do
+describe 'post a user activity route', type: :request do
   let!(:user) { FactoryBot.create(:user) }
   let!(:activity) { FactoryBot.create(:activity) }
 
-  it "requires login" do
+  it 'requires login' do
     post '/api/v1/user_activities', params: { user_activity: { activity_id: activity.id, begin_time: '2019-06-23T18:27:49', end_time: '2019-06-23T20:27:49' } }
 
     expect(response).to have_http_status(:unauthorized)

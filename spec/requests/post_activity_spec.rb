@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-describe "post an activity route", :type => :request do
+describe 'post an activity route', type: :request do
   let!(:user) { FactoryBot.create(:user) }
 
-  it "requires login" do
+  it 'requires login' do
     post '/api/v1/activities', params: { activity: { name: 'Test Activity', description: 'Test description' } }
 
     expect(response).to have_http_status(:unauthorized)

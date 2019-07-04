@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-describe "register a user route", :type => :request do
+describe 'register a user route', type: :request do
   before do
     post '/sign_up', params: { user: { email: 'test@example.com', password: 'password', password_confirmation: 'password' } }
   end

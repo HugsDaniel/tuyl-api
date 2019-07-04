@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Api::V1::UserActivitiesController < ApplicationController
   def create
     @user_activity = current_user.user_activities.build(user_activity_params)
@@ -19,11 +21,9 @@ class Api::V1::UserActivitiesController < ApplicationController
     @user_activity = UserActivity.find(params[:id])
 
     @user_activity.assign_attributes(user_activity_params)
-    @user_activity.status = "done"
+    @user_activity.status = 'done'
 
-    if @user_activity.save
-      render json: @user_activity
-    end
+    render json: @user_activity if @user_activity.save
   end
 
   private

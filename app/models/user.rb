@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
@@ -17,6 +19,6 @@ class User < ApplicationRecord
   private
 
   def create_user_skills
-    Skill.all.map { |skill| self.user_skills.create(skill: skill) }
+    Skill.all.map { |skill| user_skills.create(skill: skill) }
   end
 end

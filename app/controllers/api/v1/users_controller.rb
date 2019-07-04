@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Api::V1::UsersController < ApplicationController
   def dashboard
     @user = current_user
@@ -6,12 +8,12 @@ class Api::V1::UsersController < ApplicationController
 
     @json_user_activities = user_activities.map do |ua|
       {
-        id:       ua.id,
-        title:    ua.activity.name,
-        content:  ua.activity.description,
-        start:    ua.begin_time.strftime("%Y-%m-%d %H:%M"),
-        end:      ua.end_time.strftime("%Y-%m-%d %H:%M"),
-        status:   ua.status
+        id: ua.id,
+        title: ua.activity.name,
+        content: ua.activity.description,
+        start: ua.begin_time.strftime('%Y-%m-%d %H:%M'),
+        end: ua.end_time.strftime('%Y-%m-%d %H:%M'),
+        status: ua.status
       }
     end
 

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Api::V1::ActivitiesController < ApplicationController
   def index
     @activities = Activity.all.order('created_at DESC')
